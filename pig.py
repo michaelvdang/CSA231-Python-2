@@ -76,7 +76,8 @@ class GameOfPigs(object):
         
     def play_game(self):
         print("Game starts")
-        for i in range(2):
+        num_players = int(input("How many are playing?"))
+        for i in range(num_players):
             name = input(f'Enter player {i + 1} name: ')
             self.players.append(name)
             self.scores.append(0)
@@ -116,10 +117,4 @@ class GameOfPigs(object):
                 
 game = GameOfPigs()
 game.play_game()
-
-
-
-
-
-
 
