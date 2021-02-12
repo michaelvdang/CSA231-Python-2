@@ -36,19 +36,19 @@ class GameOfPigs(object):
     def roll(self) -> (int, int, int):
         return (random.randint(0, 4), random.randint(0, 4), random.randint(0, 99))
         # outcome - (pig 1 position, pig 2 position, 
-        #               touching (1%) or piggyback(5%))
+        #               piggyback (1%) or oinker(5%))
         
     def roll_result(self, outcome):
         print(f"You rolled {self.scoring_names[outcome[0]]}",
               f"and {self.scoring_names[outcome[1]]}")
 
     def score(self, outcome: (int, int), current_score: int) -> int:
-        if outcome[2] == 0: # piggyback 1%
+        if outcome[2] < 1: # piggyback 1%
             self.scores[self.current_turn] = -1
             self.num_players -= 1
             self.current_turn = (self.current_turn + 1) % len(self.players)
             print("Uh oh, Piggyback! You've been eliminated :(")
-        elif outcome[2] < 20: # oinker 20%
+        elif outcome[2] < 21: # oinker 20%
             self.scores[self.current_turn] = 0
             self.current_turn = (self.current_turn + 1) % len(self.players)
             print("Oinker! You've lost all your points and your turn!")
