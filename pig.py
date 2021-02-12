@@ -7,6 +7,7 @@ Game of Pigs: like a dice rolling game with points and chance to lose all
 points and turn or lose the game altogether. 
     - game has 2 players, each take turn to pass or roll
     - game ends when a player reached target score or one is eliminated
+v2. - Let players choose number of players playing at the same time 
 """
 import random
 
@@ -32,7 +33,7 @@ class GameOfPigs(object):
             4 : 'Leaning Jowler'
         }
         
-    def roll(self): # -> (int, int, int):
+    def roll(self) -> (int, int, int):
         return (random.randint(0, 4), random.randint(0, 4), random.randint(0, 99))
         # outcome - (pig 1 position, pig 2 position, 
         #               touching (1%) or piggyback(5%))
@@ -77,6 +78,9 @@ class GameOfPigs(object):
     def play_game(self):
         print("Game starts")
         num_players = int(input("How many are playing?"))
+        while num_players < 2:
+            print("Must have more than 1 player to play this game")
+            num_players = int(input("How many are playing?"))
         for i in range(num_players):
             name = input(f'Enter player {i + 1} name: ')
             self.players.append(name)
